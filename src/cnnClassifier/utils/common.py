@@ -16,6 +16,9 @@ from box import ConfigBox
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
 
     try:
+        print(f"Checking for tile atr: {path_to_yaml}")
+        if not os.path.exists(path_to_yaml):
+            raise FileNotFoundError(f"{path_to_yaml} does not exist")
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file: {path_to_yaml} loaded succesfully")
